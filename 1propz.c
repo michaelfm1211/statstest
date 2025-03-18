@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
   char parameter[1024], buf[16];
-  int popsize, n;
+  int popsize, x, n;
   double p0;
   char tail;
   double p_hat, z;
@@ -19,12 +19,13 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  report = fopen("out-ztest.latex", "w");
+  report = fopen("out-1propz.latex", "w");
   if (report == NULL) {
     perror("out-ztest.latex");
     return 1;
   }
   fprintf(report, "\\documentclass{article}\n");
+  fprintf(report, "\\setlength\\parindent{0pt}");
   fprintf(report, "\\begin{document}\n");
 
   // Parameter
@@ -80,24 +81,34 @@ int main(int argc, char *argv[]) {
   fflush(stdout);
   fgets(buf, 15, stdin);
   n = atoi(buf);
-  fprintf(stderr, "$n = %d$\n\n", n);
+  fprintf(report, "$n = %d$\n\n", n);
+
+  printf("x = ");
+  fflush(stdout);
+  fgets(buf, 15, stdin);
+  x = atoi(buf);
+  p_hat = (double)x / n;
+  fprintf(report, "$x = %d$\n\n", x);
+  printf("p_hat = x/n = %g\n", p_hat);
+  fprintf(report, "$\\hat p = \\frac{x}{n} = \\frac{%d}{%d} = %g$\n\n", x, n,
+          p_hat);
 
   printf("SRS, independent, ");
   fprintf(report, "SRS, independent, ");
   if (n * p0 > 10) {
-    printf("n > 10");
-    fprintf(report, "$n > 10$");
+    printf("n*p0 > 10");
+    fprintf(report, "$np_0 > 10$");
   } else {
-    printf("n <= 10 (proceed with caution)");
-    fprintf(report, "$n \\le 10$ (proceed with caution)");
+    printf("n*p0 <= 10 (proceed with caution)");
+    fprintf(report, "$np_0 \\le 10$ (proceed with caution)");
   }
   if (popsize == -1 || n * 10 <= popsize) {
-    printf(", n <= 10%% of population size\n");
-    fprintf(report, ", $n \\le 10\\%%$ of population size\n");
+    printf(", n <= 10%% of the population size\n");
+    fprintf(report, ", $n \\le 10\\%%$ of the population size\n");
   } else {
-    printf(", n > 10%% of population size (proceed with "
+    printf(", n > 10%% of the population size (proceed with "
            "caution\n");
-    fprintf(report, ", $n > 10\\%%$ of population size (proceed "
+    fprintf(report, ", $n > 10\\%%$ of the population size (proceed "
                     "with caution\n");
   }
   fprintf(report, "\\end{section}\n");
@@ -110,12 +121,6 @@ int main(int argc, char *argv[]) {
 
   // Test statistic
   fprintf(report, "\\begin{section}{Test Statistic}\n");
-  printf("p_hat = ");
-  fflush(stdout);
-  fgets(buf, 15, stdin);
-  p_hat = atof(buf);
-  fprintf(report, "$\\hat p = %g$\n\n", p_hat);
-
   z = (p_hat - p0) / sqrt(p0 * (1 - p0) / n);
   printf("z = (p_hat-p0)/sqrt(p(1-p)/n) = (%g-%g)/sqrt(%g*(1-%g)/%d) = %g\n",
          p_hat, p0, p0, p0, n, z);
