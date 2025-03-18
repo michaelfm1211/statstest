@@ -178,11 +178,11 @@ int main(int argc, char *argv[]) {
            p, parameter, comparison, p0);
     fprintf(report,
             "Reject $H_0$. There is significant evidence "
-            "(p=%g) that %s is %s %g.\n\n",
+            "($p=%g$) that %s is %s %g.\n\n",
             p, parameter, comparison, p0);
   } else {
     printf("Fail to reject H0. There is not enough evidence "
-           "($p=%g$) make a conclusion.\n",
+           "(p=%g) make a conclusion.\n",
            p);
     fprintf(report,
             "Fail to reject $H_0$. There is not enough "
