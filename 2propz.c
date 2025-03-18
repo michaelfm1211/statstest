@@ -126,8 +126,8 @@ int main(int argc, char *argv[]) {
   fprintf(report, "\\qquad $\\hat p_2 = x_2 / n = %d / %d = %g$\n\n", x2,
           n2, p2_hat);
 
-  printf("SRS, independent, ");
-  fprintf(report, "SRS, independent, ");
+  printf("SRS, independent\n");
+  fprintf(report, "SRS, independent\n\n");
   if (n1 * p1_hat > 10) {
     printf("n1*p1_hat > 10");
     fprintf(report, "$n_1 \\hat p_1 > 10$");
@@ -137,11 +137,11 @@ int main(int argc, char *argv[]) {
   }
   if (popsize1 == -1 || n1 * 10 <= popsize1) {
     printf(", n1 <= 10%% of the first population size\n");
-    fprintf(report, ", $n_1 \\le 10\\%%$ of the first population size\n");
+    fprintf(report, ", $n_1 \\le 10\\%%$ of the first population size\n\n");
   } else {
     printf(", n1 > 10%% of the first population size (proceed with caution\n");
     fprintf(report, ", $n_1 > 10\\%%$ of the first population size (proceed "
-                    "with caution\n");
+                    "with caution\n\n");
   }
   if (n2 * p2_hat > 10) {
     printf("n2*p2_hat > 10");
@@ -152,11 +152,11 @@ int main(int argc, char *argv[]) {
   }
   if (popsize2 == -1 || n2 * 10 <= popsize2) {
     printf(", n2 <= 10%% of the second population size\n");
-    fprintf(report, ", $n_2 \\le 10\\%%$ of the second population size\n");
+    fprintf(report, ", $n_2 \\le 10\\%%$ of the second population size\n\n");
   } else {
     printf(", n2 > 10%% of the second population size (proceed with caution\n");
     fprintf(report, ", $n_2 > 10\\%%$ of the second population size (proceed "
-                    "with caution\n");
+                    "with caution\n\n");
   }
   fprintf(report, "\\end{section}\n");
 
