@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
   fgets(buf, 16, stdin);
   if (buf[0] == '\n') {
     popsize1 = -1;
-    fprintf(report, "The first population size is sufficiently large.\n\n");
+    fprintf(report, "The first population size is sufficiently large.\n");
   } else {
     popsize1 = atoi(buf);
     fprintf(report, "The first population size is %d.\n", popsize1);
@@ -60,10 +60,10 @@ int main(int argc, char *argv[]) {
   fgets(buf, 16, stdin);
   if (buf[0] == '\n') {
     popsize2 = -1;
-    fprintf(report, "The second population size is sufficiently large.\n\n");
+    fprintf(report, "The second population size is sufficiently large.\n");
   } else {
     popsize2 = atoi(buf);
-    fprintf(report, "The second population size is %d.\n\n", popsize2);
+    fprintf(report, "The second population size is %d.\n", popsize2);
   }
   fprintf(report, "\\end{section}");
 
@@ -148,7 +148,7 @@ int main(int argc, char *argv[]) {
     fprintf(report, "$n_2 \\hat p_2 > 10$");
   } else {
     printf("n2*p2_hat <= 10 (proceed with caution)");
-    fprintf(report, "$n_2 \\gat p_2 \\le 10$ (proceed with caution)");
+    fprintf(report, "$n_2 \\hat p_2 \\le 10$ (proceed with caution)");
   }
   if (popsize2 == -1 || n2 * 10 <= popsize2) {
     printf(", n2 <= 10%% of the second population size\n");
