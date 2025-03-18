@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
   p_hat = (double)x / n;
   fprintf(report, "$x = %d$\n\n", x);
   printf("p_hat = x/n = %g\n", p_hat);
-  fprintf(report, "$\\hat p = \\frac{x}{n} = \\frac{%d}{%d} = %g$\n\n", x, n,
+  fprintf(report, "$\\hat p = x / n = %d / %d = %g$\n\n", x, n,
           p_hat);
 
   printf("SRS, independent, ");
